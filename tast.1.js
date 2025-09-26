@@ -46,7 +46,23 @@ class Library{
             }
         }
     }
+
+
+    getBookStat() {
+     const totalQuantity = this.books.reduce((accum, val) => accum + val.totalQuantity, 0);
+     const availableQuantity = this.books.reduce((accum, val) => accum + val.availableQuantity, 0);
+     const statistic = {
+           totalQuantity: 
+           totalQuantity: totalQuantity, 
+           availableQuantity: availableQuantity,
+           issued: totalQuantity - availableQuantity,
+           mostPopularBooks: this.books.sort((a, b) => b.borrowedBy.length - a.borrowedBy.length).slice(0, 2)
+        }
+        return statistic;
+    }
 }
+
+
 
 
     const library = new Library('Текстовая библиотека');
